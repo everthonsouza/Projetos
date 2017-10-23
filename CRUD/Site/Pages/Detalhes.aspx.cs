@@ -54,6 +54,8 @@ namespace Site.Pages
                 d.Excluir(cod);
                 pnlDados.Visible = false;
                 lblMensagem.Text = "Cliente excluido com sucesso!";
+
+                txtCodigo.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -66,7 +68,18 @@ namespace Site.Pages
         {
             try
             {
+                Pessoa p = new Pessoa();
+                p.Codigo = Convert.ToInt32(txtCodigo.Text);
+                p.Nome = txtNome.Text;
+                p.Endereco = txtEndereco.Text;
+                p.Email = txtEmail.Text;
 
+                PessoaDAL d = new PessoaDAL();
+                d.Atualizar(p);
+                pnlDados.Visible = false;
+                lblMensagem.Text = "Cliente atualizado com sucesso!";
+
+                txtCodigo.Text = string.Empty;
             }
             catch (Exception ex)
             {
