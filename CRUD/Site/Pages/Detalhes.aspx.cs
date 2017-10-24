@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DAL.Model;
 using DAL.Persistence;
+using System.Text.RegularExpressions;
 
 namespace Site.Pages
 {
@@ -74,12 +75,26 @@ namespace Site.Pages
                 p.Endereco = txtEndereco.Text;
                 p.Email = txtEmail.Text;
 
-                PessoaDAL d = new PessoaDAL();
-                d.Atualizar(p);
-                pnlDados.Visible = false;
-                lblMensagem.Text = "Cliente atualizado com sucesso!";
+                string email = txtEmail.Text;
 
-                txtCodigo.Text = string.Empty;
+                Regex rg = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
+
+                if (rg.IsMatch(email))
+                {
+                    PessoaDAL d = new PessoaDAL();
+                    d.Atualizar(p);
+                    pnlDados.Visible = false;
+                    lblMensagem.Text = "Cliente atualizado com sucesso!";
+
+                    txtCodigo.Text = string.Empty;
+                }
+                else
+                {
+                    pnlDados.Visible = true;
+                    lblMensagem.Text = "E-mail inválido";
+                }
+
+
             }
             catch (Exception ex)
             {

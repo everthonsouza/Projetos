@@ -30,7 +30,7 @@
                 Endereço: <asp:TextBox ID="txtEndereco" runat="server" Width="50%" CssClass="form-control"></asp:TextBox>
                 <br />
 
-                E-mail: <asp:TextBox ID="txtEmail" runat="server" Width="45%" CssClass="form-control"></asp:TextBox>
+                E-mail: <asp:TextBox ID="txtEmail" runat="server" Width="45%" CssClass="form-control" ></asp:TextBox>
                 <br />
 
                 <asp:Button ID="btnExclui" runat="server" Text="Excluir" CssClass="btn btn-danger" OnClick="btnExcluirCliente" />
